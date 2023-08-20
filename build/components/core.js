@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MessageRankingCore = void 0;
+const database_1 = require("../utils/database");
 const message_1 = require("./message");
 class MessageRankingCore extends message_1.MessageRanking {
     constructor(message) {
@@ -17,6 +18,7 @@ class MessageRankingCore extends message_1.MessageRanking {
         this.MessageCount = [];
         this.MessageCountJoinedUser = [];
         this.SortedMessageCount = [];
+        this.db = new database_1.CustomDatabase();
     }
     end() {
         return __awaiter(this, void 0, void 0, function* () {

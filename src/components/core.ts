@@ -1,3 +1,4 @@
+import { CustomDatabase } from "../utils/database";
 import { MessageRanking } from "./message";
 import { Message } from "discord.js"
 
@@ -15,8 +16,8 @@ export class MessageRankingCore extends MessageRanking {
 
         this.MessageCount = []
         this.MessageCountJoinedUser = []
-
         this.SortedMessageCount = []
+        this.db = new CustomDatabase()
     }
 
     public async end() {
