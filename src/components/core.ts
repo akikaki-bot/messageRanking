@@ -26,35 +26,40 @@ export class MessageRankingCore extends MessageRanking {
               this.MessageCountJoinedUser.push(
                   {
                       author : v,
-                      count : UserCount
+                      count : Number(UserCount)
                   }
               )
-              this.MessageCount.push(UserCount)
+              this.MessageCount.push(Number(UserCount))
          })
 
+         await this.sleep(100)
+
         this.SortedMessageCount = this.MessageCount.sort((a , b) => b - a)
-        return await this.sort()
+        return this.sort()
     }
 
-    public async sort() {
+    public sort() {
 
         const ReturnValue : { zyuni : number , author : number | string , count : number }[] = []
 
         const MessageSorted = this.SortedMessageCount.map(vx => {
-            return this.MessageCountJoinedUser.findIndex(v => v.count === vx)
+            return this.MessageCountJoinedUser.findIndex(v => Number(v.count) === vx)
         })
+
 
         for(let i : number = 0; i < MessageSorted.length; i++) {
             ReturnValue.push(
                  {
-                    zyuni : i,
+                    zyuni : i + 1,
                     author : this.MessageCountJoinedUser[MessageSorted[i]].author,
-                    count : this.MessageCountJoinedUser[MessageSorted[i]].count
+                    count : Number(this.MessageCountJoinedUser[MessageSorted[i]].count)
                  }
             )
         }
-
-        await this.db.Data.clear()
         return ReturnValue
     }
+
+    private sleep(ms : number): Promise<any> {
+        return new Promise(resolve => setTimeout(resolve, ms))
+    }   
 }

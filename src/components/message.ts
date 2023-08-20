@@ -15,11 +15,12 @@ export class MessageRanking {
 
     private async save() {
         
-        const IsJoinedUser = (await this.db.get<string>(`joined.users`)).split(',')
+        const IsJoinedUser_Old = await this.db.get<string>(`joined.users`)
         const oldData = await this.db.get(this.message.author.id)
 
+        const IsJoinedUser = typeof IsJoinedUser_Old === "undefined" ? [] : IsJoinedUser_Old.split(',')
         // 初期化
-        if(IsJoinedUser.length === 0){
+        if(!IsJoinedUser_Old || IsJoinedUser.length === 0){
             await this.db.set(`joined.users`, [this.message.author.id].join(','))
         } else {
            const Joined = IsJoinedUser.find(v => v === this.message.author.id)

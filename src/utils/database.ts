@@ -1,6 +1,6 @@
-import * as Keyv from '@keyv/sqlite'
+import KeyvSqlite from '@keyv/sqlite'
 
-const D = new Keyv({uri : "sqlite://main.db.sqlite"}) 
+const D = new KeyvSqlite({uri : "sqlite://main.db.sqlite"}) 
 
 /**
  * でーたべーす？？？なにそれおいしいの？？
@@ -27,16 +27,16 @@ const D = new Keyv({uri : "sqlite://main.db.sqlite"})
  */
 export class CustomDatabase {
 
-    public Data : Keyv<any>
+    public Data : KeyvSqlite<any>
     constructor(
-        keyvURI ?: string , option ?: Keyv.Options
+        keyvURI ?: string , option ?: KeyvSqlite.Options
     ){
         if(
            typeof keyvURI !== "undefined" ||
            typeof option !== "undefined"
           ) {
            // typeof option?.uri !== "undefined" ? option.uri = keyvURI : void 0
-            this.Data = new Keyv(option)
+            this.Data = new KeyvSqlite(option)
         } else {
             this.Data = D;
         }
@@ -90,6 +90,10 @@ export class CustomDatabase {
                 reject(err)
             })
         })
+    }
+
+    async clear() : Promise<void>{
+        return await this.Data.clear()
     }
 }
 
