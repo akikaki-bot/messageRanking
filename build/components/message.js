@@ -13,7 +13,8 @@ exports.MessageRanking = void 0;
 const database_1 = require("../utils/database");
 class MessageRanking {
     constructor(message) {
-        if(typeof message === "undefined") return;
+        if (typeof message === "undefined")
+            return;
         this.message = message;
         this.db = new database_1.CustomDatabase();
         this.save();

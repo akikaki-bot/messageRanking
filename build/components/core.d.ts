@@ -13,6 +13,7 @@ export declare class MessageRankingCore extends MessageRanking {
         author: string | number;
         count: number;
     }[]>;
+    clear(): Promise<void>;
     sort(): {
         zyuni: number;
         author: number | string;

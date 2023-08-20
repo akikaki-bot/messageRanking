@@ -34,6 +34,11 @@ class MessageRankingCore extends message_1.MessageRanking {
             return this.sort();
         });
     }
+    clear() {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.db.clear();
+        });
+    }
     sort() {
         const ReturnValue = [];
         const MessageSorted = this.SortedMessageCount.map(vx => {
