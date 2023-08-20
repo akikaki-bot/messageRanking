@@ -7,7 +7,8 @@ export class MessageRanking {
     private message : Message
     public db : CustomDatabase
 
-    constructor(message : Message) {
+    constructor(message ?: Message) {
+        if(typeof message === "undefined") return;
         this.message = message
         this.db = new CustomDatabase()
         this.save()

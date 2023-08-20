@@ -3,6 +3,6 @@ import { CustomDatabase } from "../utils/database";
 export declare class MessageRanking {
     private message;
     db: CustomDatabase;
-    constructor(message: Message);
+    constructor(message?: Message);
     private save;
 }

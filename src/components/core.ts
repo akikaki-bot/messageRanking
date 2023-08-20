@@ -10,7 +10,7 @@ export class MessageRankingCore extends MessageRanking {
 
     
 
-    constructor(message : Message ) {
+    constructor(message ?: Message ) {
         super(message)
 
         this.MessageCount = []
@@ -35,7 +35,11 @@ export class MessageRankingCore extends MessageRanking {
          await this.sleep(100)
 
         this.SortedMessageCount = this.MessageCount.sort((a , b) => b - a)
-        return this.sort()
+        return this.sort() 
+    }
+
+    public async clear() {
+        await this.db.clear()
     }
 
     public sort() {

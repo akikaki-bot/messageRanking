@@ -7,7 +7,7 @@ export declare class MessageRankingCore extends MessageRanking {
         "count": number;
     }[];
     SortedMessageCount: number[];
-    constructor(message: Message);
+    constructor(message?: Message);
     end(): Promise<{
         zyuni: number;
         author: string | number;
